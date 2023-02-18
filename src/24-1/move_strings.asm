@@ -91,11 +91,11 @@ str_loop3:
     mov  rdi, other_string
     mov  rcx, length
     rep  stosb
-    lea  rsi, [my_string + length - 4] ; lea 指令即取地上：rsi = my_string + length - 4，使用 lea 指令一次完成取地址和偏移计算
-    lea  rdi, [other_string + length]
-    mov  rcx, 27                       ; 复制 27 - 1 个字符
-    std                                ; 设置 DF 标志位
-    rep  movsb                         ; 由于设置了 DF，movsb 是反向的，[--rdi] = [--rsi]; rcx--
+    lea  rsi, [my_string + length - 5]    ; lea 指令即取地上：rsi = my_string + length - 5，使用 lea 指令一次完成取地址和偏移计算
+    lea  rdi, [other_string + length - 1] ; 
+    mov  rcx, 26                          ; 复制 26 个字符，原书中代码有内存写越界的问题
+    std                                   ; 设置 DF 标志位
+    rep  movsb                            ; 由于设置了 DF，movsb 是反向的，[--rdi] = [--rsi]; rcx--
     prnt other_string, length
 
     leave
