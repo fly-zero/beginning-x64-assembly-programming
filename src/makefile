@@ -7,4 +7,4 @@ all clean: $(subdirs)
 
 .PHONY: $(subdirs)
 $(subdirs):
-	@$(MAKE) -C $@ $(MAKECMDGOALS)
+	$(MAKE) -C $@ $(MAKECMDGOALS)
