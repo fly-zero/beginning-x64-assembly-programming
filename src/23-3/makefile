@@ -1,2 +1,3 @@
-inline2: inline2.c
-	gcc -o $@ $< -masm=intel -no-pie
+target   = inline2
+c_flags += -masm=intel
+-include ../../rules.mk
