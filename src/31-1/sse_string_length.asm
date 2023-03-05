@@ -41,8 +41,8 @@ pstrlen:
     pxor      xmm0, xmm0                   ; xmm0 全部初始化了 0
 .not_found:
     add       rax, 16                      ; 每个循环开始，先将 rax 增加 16
-    pcmpistri xmm0, [rdi + rax], 00001000b ; 在字符中 [rdi + rax] 中匹配 xmm0
-    jnz       .not_found                   ; 未找到 0，则继续循环
+    pcmpistri xmm0, [rdi + rax], 00001000b ; 在字符中 [rdi + rax] 中匹配 xmm0；若 [rdi + rax] 内存中存在 0 字符，则设置 ZF
+    jnz       .not_found                   ; 字符串已遇到结尾
     add       rax, rcx                     ; 找到 0，rcx 中包含匹配中的字符偏移
     inc       rax                          ; rax 是以 0 开头的索引，增加 1 即为字符串长度
 
