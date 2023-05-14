@@ -157,11 +157,11 @@ section .text
     push rbp
     mov  rbp, rsp
 
-    sub rsp, 16
+    sub    rsp, 16
     movdqu [rbp - 16], xmm2     ; 保存 xmm2
     movdqu xmm2, [.bytereverse] ; 加载反转表
     pshufb xmm0, xmm2           ; 反转掩码
     movdqu xmm2, [rbp - 16]     ; 恢复 xmm2
 
-leave
-ret
+    leave
+    ret
